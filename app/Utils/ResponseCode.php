@@ -6,7 +6,7 @@ class ResponseCode {
     static function successGet($message, $data){
         return response()->json([
             'message' => $message,
-            'success' => true,
+            'status' => true,
             'data' => $data
         ], 200);
     }
@@ -14,7 +14,7 @@ class ResponseCode {
     static function successPost($message){
         return response()->json([
             'message' => $message,
-            'success' => true,
+            'status' => true,
             'data' => NULL
         ], 201);
     }
@@ -22,7 +22,7 @@ class ResponseCode {
     static function errorPost($message){
         return response()->json([
             'message' => $message,
-            'success' => false,
+            'status' => false,
             'data' => NULL
         ], 400);
     }
@@ -30,7 +30,7 @@ class ResponseCode {
     static function errorGet($message){
         return response()->json([
             'message' => $message,
-            'success' => false,
+            'status' => false,
             'data' => NULL
         ], 404);
     }
@@ -38,7 +38,7 @@ class ResponseCode {
     static function unauthorized($message = null){
         return response()->json([
             'message' => $message ? $message : 'You are unauthorized to access this resource',
-            'success' => false,
+            'status' => false,
             'data' => null,
         ], 401);
     }
