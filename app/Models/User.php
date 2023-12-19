@@ -57,4 +57,8 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    public function getHistory(){
+        return $this->hasMany(HistoryBarang::class, 'user_id', 'id');
+    }
 }

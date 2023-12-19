@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Utils\ResponseCode;
 
 class AuthController extends Controller
 {
@@ -29,7 +30,8 @@ class AuthController extends Controller
         $credentials = request(['email', 'password']);
         // dd($credentials);
         if (! $token = auth()->attempt($request->all())) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            // return response()->json(['error' => 'Unauthorized'], 401);
+            return ResponseCode::unauthorized('Unauthorized');
         }
 
         return $this->respondWithToken($token);
@@ -76,7 +78,7 @@ class AuthController extends Controller
      */
     protected function respondWithToken($token)
     {
-        return response()->json([
+        return ResponseCode::successGet('Login success', [
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\BarangController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -32,4 +33,16 @@ Route::group([
     Route::post('refresh', [AuthController::class,'refresh']);
     Route::post('me', [AuthController::class,'me']);
 
+});
+
+
+Route::group([
+    'middleware' => ['api', 'auth.role:User'],
+    'prefix' => 'barang'
+], function () {
+    Route::get('/', [BarangController::class, 'index']);
+    Route::post('/', [BarangController::class, 'store']);
+    Route::get('/{id}', [BarangController::class, 'show']);
+    Route::put('/{id}', [BarangController::class, 'update']);
+    Route::delete('/{id}', [BarangController::class, 'destroy']);
 });
