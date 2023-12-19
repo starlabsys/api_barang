@@ -38,7 +38,8 @@ class ResponseCode {
     static function unauthorized($message = null){
         return response()->json([
             'message' => $message ? $message : 'You are unauthorized to access this resource',
-            'success' => false
+            'success' => false,
+            'data' => null,
         ], 401);
     }
 }

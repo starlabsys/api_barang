@@ -45,7 +45,7 @@ class AuthController extends Controller
     public function me()
     {
         return ResponseCode::successGet("Success Get Access", auth()->user());
-        return response()->json(auth()->user());
+        // return response()->json(auth()->user());
     }
 
     /**
